@@ -17,7 +17,7 @@ license = "MIT"
 [features]
 default = ["request_building"]
 request_building = ["serde_json"]
-no_std = []
+no_std = ["serde/alloc"]
 
 
 [dependencies]
