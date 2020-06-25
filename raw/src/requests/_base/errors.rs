@@ -52,4 +52,5 @@ impl fmt::Display for Error {
     }
 }
 
-impl error::Error for Error {}
+#[cfg(not(feature = "no_std"))]
+impl ::std::error::Error for Error {}
