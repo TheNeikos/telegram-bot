@@ -25,4 +25,3 @@ bytes = "0.5"
 serde = { version = "1", default-features = false}
 serde_derive = { version = "1", default-features = false}
 serde_json = { version = "1", optional = true }
-serde-value = "0.5.2"
