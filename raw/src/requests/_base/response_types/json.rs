@@ -13,7 +13,7 @@ pub trait JsonResponse {
 }
 
 pub struct JsonIdResponse<Type> {
-    phantom: ::std::marker::PhantomData<Type>,
+    phantom: marker::PhantomData<Type>,
 }
 
 impl<Type> JsonResponse for JsonIdResponse<Type> {

@@ -6,7 +6,7 @@ use crate::requests::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct JsonRequestType<Request> {
-    phantom: ::std::marker::PhantomData<Request>,
+    phantom: marker::PhantomData<Request>,
 }
 
 impl<Request: Serialize> RequestType for JsonRequestType<Request> {

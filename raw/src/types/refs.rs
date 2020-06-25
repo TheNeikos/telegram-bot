@@ -1,5 +1,4 @@
-use std::fmt;
-use std::ops::Deref;
+use crate::prelude::*;
 
 use serde::ser::{Serialize, Serializer};
 
@@ -13,8 +12,8 @@ macro_rules! integer_id_impls {
             }
         }
 
-        impl ::std::fmt::Display for $name {
-            fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        impl fmt::Display for $name {
+            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
                 self.0.fmt(f)
             }
         }

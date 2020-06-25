@@ -1,3 +1,5 @@
+use crate::prelude::*;
+
 use serde::de::{Deserialize, Deserializer, Error};
 
 use crate::types::*;
@@ -885,8 +887,8 @@ pub enum ParseMode {
     Html,
 }
 
-impl ::std::fmt::Display for ParseMode {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+impl fmt::Display for ParseMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
             ParseMode::Markdown => write!(f, "Markdown"),
             ParseMode::Html => write!(f, "HTML"),

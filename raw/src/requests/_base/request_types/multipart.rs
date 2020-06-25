@@ -3,7 +3,7 @@ use crate::requests::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct MultipartRequestType<Request> {
-    phantom: ::std::marker::PhantomData<Request>,
+    phantom: marker::PhantomData<Request>,
 }
 
 pub trait ToMultipartValue {

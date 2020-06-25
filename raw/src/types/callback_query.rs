@@ -1,3 +1,5 @@
+use crate::prelude::*;
+
 use crate::types::*;
 
 /// This object represents an incoming callback query from a callback button in an inline keyboard.

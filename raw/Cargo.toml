@@ -17,6 +17,7 @@ license = "MIT"
 [features]
 default = ["request_building"]
 request_building = ["serde_json"]
+no_std = []
 
 
 [dependencies]

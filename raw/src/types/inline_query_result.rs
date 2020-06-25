@@ -1,5 +1,6 @@
+use crate::prelude::*;
+
 use crate::types::*;
-use std::ops::Not;
 
 /// This object represents an incoming inline query.
 /// When the user sends an empty query, your bot could return some default or trending results.

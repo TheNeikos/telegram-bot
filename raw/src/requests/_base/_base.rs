@@ -24,7 +24,7 @@ pub trait Request {
     fn detach(&self) -> DetachedRequest<Self::Response> {
         DetachedRequest {
             http_request: self.serialize(),
-            phantom: ::std::marker::PhantomData,
+            phantom: marker::PhantomData,
         }
     }
 }
@@ -51,7 +51,7 @@ impl<'a, Req: Request> Request for &'a mut Req {
 
 pub struct DetachedRequest<Resp> {
     http_request: Result<HttpRequest, Error>,
-    phantom: ::std::marker::PhantomData<Resp>,
+    phantom: marker::PhantomData<Resp>,
 }
 
 #[cfg(feature = "request_building")]

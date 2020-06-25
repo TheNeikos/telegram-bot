@@ -1,3 +1,5 @@
+use crate::prelude::*;
+
 use crate::types::*;
 
 /// This object represents an incoming update.

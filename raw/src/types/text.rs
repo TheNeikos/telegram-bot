@@ -1,3 +1,6 @@
+use crate::prelude::*;
+
+#[cfg(not(feature = "no_std"))]
 use std::path::Path;
 
 use bytes::Bytes;
@@ -7,7 +10,7 @@ pub struct Text(Bytes);
 
 impl Text {
     pub fn as_str(&self) -> &str {
-        unsafe { std::str::from_utf8_unchecked(self.0.as_ref()) }
+        unsafe { str::from_utf8_unchecked(self.0.as_ref()) }
     }
 }
 
@@ -29,6 +32,7 @@ impl AsRef<str> for Text {
     }
 }
 
+#[cfg(not(feature = "no_std"))]
 impl AsRef<Path> for Text {
     fn as_ref(&self) -> &Path {
         self.as_str().as_ref()
