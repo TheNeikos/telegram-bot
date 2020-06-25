@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -12,6 +13,7 @@ pub struct StopMessageLiveLocation {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for StopMessageLiveLocation {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Message>;

@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -21,6 +22,7 @@ pub struct AnswerCallbackQuery<'t> {
     cache_time: Option<i64>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'i, 't> Request for AnswerCallbackQuery<'t> {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

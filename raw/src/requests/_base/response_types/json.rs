@@ -1,6 +1,7 @@
 use serde::de::DeserializeOwned;
 use serde_json;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 

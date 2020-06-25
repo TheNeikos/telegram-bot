@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -23,6 +24,7 @@ pub struct SendVenue<'t, 'a, 'f> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'t, 'a, 'f> Request for SendVenue<'t, 'a, 'f> {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Message>;
@@ -152,6 +154,7 @@ where
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'b> ToRequest<'b> for Venue {
     type Request = SendVenue<'b, 'b, 'b>;
 
@@ -172,6 +175,7 @@ impl<'b> ToRequest<'b> for Venue {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'b> ToReplyRequest<'b> for Venue {
     type Request = SendVenue<'b, 'b, 'b>;
 

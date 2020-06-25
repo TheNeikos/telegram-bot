@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -11,6 +12,7 @@ pub struct UnpinChatMessage {
     chat_id: ChatRef,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for UnpinChatMessage {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

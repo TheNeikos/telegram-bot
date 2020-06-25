@@ -1,5 +1,6 @@
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -16,6 +17,7 @@ pub struct PinChatMessage {
     disable_notification: bool,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for PinChatMessage {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

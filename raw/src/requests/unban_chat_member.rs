@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -11,6 +12,7 @@ pub struct UnbanChatMember {
     user_id: UserId,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for UnbanChatMember {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -28,6 +29,7 @@ pub trait Request {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'a, Req: Request> Request for &'a Req {
     type Type = Req::Type;
     type Response = Req::Response;
@@ -37,6 +39,7 @@ impl<'a, Req: Request> Request for &'a Req {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'a, Req: Request> Request for &'a mut Req {
     type Type = Req::Type;
     type Response = Req::Response;
@@ -51,6 +54,7 @@ pub struct DetachedRequest<Resp> {
     phantom: ::std::marker::PhantomData<Resp>,
 }
 
+#[cfg(feature = "request_building")]
 impl<Resp: ResponseType + 'static> Request for DetachedRequest<Resp> {
     type Type = DetachedRequestType;
     type Response = Resp;

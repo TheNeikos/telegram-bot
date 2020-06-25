@@ -1,5 +1,6 @@
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -14,6 +15,7 @@ pub struct ForwardMessage {
     message_id: MessageId,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for ForwardMessage {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Message>;

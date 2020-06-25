@@ -1,4 +1,5 @@
 #[macro_use]
+#[cfg(feature = "request_building")]
 pub mod _base;
 pub mod answer_callback_query;
 pub mod answer_inline_query;
@@ -33,6 +34,7 @@ pub mod stop_message_live_location;
 pub mod unban_chat_member;
 pub mod unpin_chat_message;
 
+#[cfg(feature = "request_building")]
 pub use self::_base::*;
 pub use self::answer_callback_query::*;
 pub use self::answer_inline_query::*;

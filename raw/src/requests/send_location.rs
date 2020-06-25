@@ -1,5 +1,6 @@
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -20,6 +21,7 @@ pub struct SendLocation {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for SendLocation {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Message>;
@@ -103,6 +105,7 @@ where
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'b> ToRequest<'b> for Location {
     type Request = SendLocation;
 
@@ -114,6 +117,7 @@ impl<'b> ToRequest<'b> for Location {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'b> ToReplyRequest<'b> for Location {
     type Request = SendLocation;
 

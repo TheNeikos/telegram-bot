@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]

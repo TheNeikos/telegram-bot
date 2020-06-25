@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -10,6 +11,7 @@ pub struct GetChatAdministrators {
     chat_id: ChatRef,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for GetChatAdministrators {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Vec<ChatMember>>;

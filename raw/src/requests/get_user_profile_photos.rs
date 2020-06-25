@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -10,6 +11,7 @@ pub struct GetUserProfilePhotos {
     limit: Option<Integer>,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for GetUserProfilePhotos {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<UserProfilePhotos>;

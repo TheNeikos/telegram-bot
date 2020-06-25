@@ -1,4 +1,6 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
+#[cfg(feature = "request_building")]
 use crate::types::*;
 
 /// A simple method for testing your bot's auth token. Requires no parameters.
@@ -7,6 +9,7 @@ use crate::types::*;
 #[must_use = "requests do nothing unless sent"]
 pub struct GetMe;
 
+#[cfg(feature = "request_building")]
 impl Request for GetMe {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<User>;

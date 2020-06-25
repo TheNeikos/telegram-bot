@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -14,6 +15,7 @@ pub struct GetUpdates {
     allowed_updates: Vec<AllowedUpdate>, // TODO(knsd) BitSet? HashSet? BTreeSet?
 }
 
+#[cfg(feature = "request_building")]
 impl Request for GetUpdates {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Vec<Update>>;

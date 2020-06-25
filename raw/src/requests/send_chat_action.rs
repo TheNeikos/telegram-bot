@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -33,6 +34,7 @@ pub struct SendChatAction {
     action: ChatAction,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for SendChatAction {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

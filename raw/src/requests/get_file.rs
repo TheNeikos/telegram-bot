@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -9,6 +10,7 @@ pub struct GetFile {
     file_id: FileRef,
 }
 
+#[cfg(feature = "request_building")]
 impl<'s> Request for GetFile {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<File>;

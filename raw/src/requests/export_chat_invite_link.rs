@@ -1,6 +1,4 @@
-use std::borrow::Cow;
-use std::ops::Not;
-
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -11,6 +9,7 @@ pub struct ExportChatInviteLink {
     chat_id: ChatRef,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for ExportChatInviteLink {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<String>;

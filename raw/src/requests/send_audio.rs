@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -20,6 +21,7 @@ pub struct SendAudio<'c, 'p, 't> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'c, 'p, 't> ToMultipart for SendAudio<'c, 'p, 't> {
     fn to_multipart(&self) -> Result<Multipart, Error> {
         multipart_map! {
@@ -39,6 +41,7 @@ impl<'c, 'p, 't> ToMultipart for SendAudio<'c, 'p, 't> {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'c, 'p, 't> Request for SendAudio<'c, 'p, 't> {
     type Type = MultipartRequestType<Self>;
     type Response = JsonIdResponse<Message>;

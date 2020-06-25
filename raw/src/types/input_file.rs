@@ -1,5 +1,6 @@
 use bytes::Bytes;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -189,6 +190,7 @@ impl<'a> From<&'a mut InputFileUpload> for InputFileUpload {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl ToMultipartValue for InputFile {
     fn to_multipart_value(&self) -> MultipartValue {
         match &self.0 {

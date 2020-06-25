@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -12,6 +13,7 @@ pub struct KickChatMember {
     user_id: UserId,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for KickChatMember {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -8,6 +9,7 @@ pub struct GetChat {
     chat_id: ChatRef,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for GetChat {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Chat>;

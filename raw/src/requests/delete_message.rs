@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -16,6 +17,7 @@ pub struct DeleteMessage {
     message_id: MessageId,
 }
 
+#[cfg(feature = "request_building")]
 impl Request for DeleteMessage {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;

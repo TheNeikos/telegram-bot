@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -14,6 +15,7 @@ pub struct EditMessageCaption<'s> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'s> Request for EditMessageCaption<'s> {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<Message>;

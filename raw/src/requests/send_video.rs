@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -21,6 +22,7 @@ pub struct SendVideo<'c> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'c> ToMultipart for SendVideo<'c> {
     fn to_multipart(&self) -> Result<Multipart, Error> {
         multipart_map! {
@@ -41,6 +43,7 @@ impl<'c> ToMultipart for SendVideo<'c> {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'c> Request for SendVideo<'c> {
     type Type = MultipartRequestType<Self>;
     type Response = JsonIdResponse<Message>;

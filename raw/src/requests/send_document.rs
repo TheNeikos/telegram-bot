@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -18,6 +19,7 @@ pub struct SendDocument<'c> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'c> ToMultipart for SendDocument<'c> {
     fn to_multipart(&self) -> Result<Multipart, Error> {
         multipart_map! {
@@ -34,6 +36,7 @@ impl<'c> ToMultipart for SendDocument<'c> {
     }
 }
 
+#[cfg(feature = "request_building")]
 impl<'c> Request for SendDocument<'c> {
     type Type = MultipartRequestType<Self>;
     type Response = JsonIdResponse<Message>;

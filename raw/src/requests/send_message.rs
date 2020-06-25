@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 use std::ops::Not;
 
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -22,6 +23,7 @@ pub struct SendMessage<'s> {
     reply_markup: Option<ReplyMarkup>,
 }
 
+#[cfg(feature = "request_building")]
 impl<'c, 's> Request for SendMessage<'s> {
     type Type = JsonRequestType<Self>;
     type Response = JsonIdResponse<MessageOrChannelPost>;

@@ -1,3 +1,4 @@
+#[cfg(feature = "request_building")]
 use crate::requests::*;
 use crate::types::*;
 
@@ -8,6 +9,7 @@ pub struct AnswerInlineQuery {
     // TODO: Rest of the fields
 }
 
+#[cfg(feature = "request_building")]
 impl Request for AnswerInlineQuery {
     type Type = JsonRequestType<Self>;
     type Response = JsonTrueToUnitResponse;
