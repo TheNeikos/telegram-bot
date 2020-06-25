@@ -15,13 +15,13 @@ categories = ["api-bindings"]
 license = "MIT"
 
 [features]
-default = ["request_building"]
+default = ["request_building", "bytes/std"]
 request_building = ["serde_json"]
 no_std = ["serde/alloc"]
 
 
 [dependencies]
-bytes = "0.5"
-serde = { version = "1", default-features = false}
-serde_derive = { version = "1", default-features = false}
+bytes = {version = "0.5", default-features = false }
+serde = { version = "1", default-features = false }
+serde_derive = { version = "1", default-features = false }
 serde_json = { version = "1", optional = true }
