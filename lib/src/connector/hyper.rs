@@ -105,11 +105,11 @@ impl<C: Connect + std::fmt::Debug + 'static + Clone + Send + Sync> Connector for
                         for (key, value) in &fields {
                             match value {
                                 MultipartTemporaryValue::Text(text) => {
-                                    part.add_text(*key, text.as_str());
+                                    part.add_text(key, text.as_str());
                                 }
                                 MultipartTemporaryValue::Data { file_name, data } => {
                                     part.add_stream(
-                                        *key,
+                                        key,
                                         Cursor::new(data),
                                         Some(file_name.as_str()),
                                         None,

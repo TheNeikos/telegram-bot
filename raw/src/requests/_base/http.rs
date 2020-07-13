@@ -18,7 +18,7 @@ impl RequestUrl {
 
     #[cfg(not(feature = "no_std"))]
     pub fn url(&self, token: &str) -> String {
-        match self {
+        match &self {
             &RequestUrl::Method(method) => format!("{}bot{}/{}", telegram_api_url(), token, method),
         }
     }

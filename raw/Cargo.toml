@@ -15,7 +15,7 @@ categories = ["api-bindings"]
 license = "MIT"
 
 [features]
-default = ["request_building", "bytes/std"]
+default = ["request_building", "bytes/std", "serde_json/std"]
 request_building = ["serde_json"]
 no_std = ["serde/alloc", "serde_json/alloc"]
 
