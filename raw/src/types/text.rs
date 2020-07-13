@@ -4,9 +4,29 @@ use crate::prelude::*;
 use std::path::Path;
 
 use bytes::Bytes;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Ord, Eq, Hash)]
-pub struct Text(Bytes);
+fn serialize_bytes<S>(input: &Bytes, ser: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
+{
+    ser.collect_seq(&input[..])
+}
+
+fn deserialize_bytes<'de, D>(des: D) -> Result<Bytes, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let buf = Vec::<u8>::deserialize(des)?;
+    Ok(buf.into())
+}
+
+#[derive(Debug, Clone, PartialEq, PartialOrd, Ord, Eq, Hash, Serialize, Deserialize)]
+pub struct Text(
+    #[serde(serialize_with = "serialize_bytes")]
+    #[serde(deserialize_with = "deserialize_bytes")]
+    Bytes,
+);
 
 impl Text {
     pub fn as_str(&self) -> &str {

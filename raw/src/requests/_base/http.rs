@@ -1,20 +1,22 @@
 use crate::prelude::*;
 
 use bytes::Bytes;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 use crate::types::Text;
 use crate::url::telegram_api_url;
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub enum RequestUrl {
-    Method(&'static str),
+    Method(String),
 }
 
 impl RequestUrl {
     pub fn method(method: &'static str) -> Self {
-        RequestUrl::Method(method)
+        RequestUrl::Method(method.into())
     }
 
+    #[cfg(not(feature = "no_std"))]
     pub fn url(&self, token: &str) -> String {
         match self {
             &RequestUrl::Method(method) => format!("{}bot{}/{}", telegram_api_url(), token, method),
@@ -22,22 +24,45 @@ impl RequestUrl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub enum Method {
     Get,
     Post,
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
-pub enum MultipartValue {
-    Text(Text),
-    Path { path: Text, file_name: Option<Text> },
-    Data { file_name: Text, data: Bytes },
+fn serialize_bytes<S>(input: &Bytes, ser: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
+{
+    ser.collect_seq(&input[..])
 }
 
-pub type Multipart = Vec<(&'static str, MultipartValue)>;
+fn deserialize_bytes<'de, D>(des: D) -> Result<Bytes, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let buf = Vec::<u8>::deserialize(des)?;
+    Ok(buf.into())
+}
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
+pub enum MultipartValue {
+    Text(Text),
+    Path {
+        path: Text,
+        file_name: Option<Text>,
+    },
+    Data {
+        file_name: Text,
+        #[serde(serialize_with = "serialize_bytes")]
+        #[serde(deserialize_with = "deserialize_bytes")]
+        data: Bytes,
+    },
+}
+
+pub type Multipart = Vec<(String, MultipartValue)>;
+
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub enum Body {
     Empty,
     Multipart(Multipart),
@@ -57,7 +82,7 @@ impl fmt::Display for Body {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct HttpRequest {
     pub url: RequestUrl,
     pub method: Method,
@@ -65,14 +90,14 @@ pub struct HttpRequest {
 }
 
 impl HttpRequest {
-    pub fn name(&self) -> &'static str {
-        match self.url {
-            RequestUrl::Method(method) => method,
+    pub fn name(&self) -> &str {
+        match &self.url {
+            RequestUrl::Method(method) => &method,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
+#[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash, Serialize, Deserialize)]
 pub struct HttpResponse {
     pub body: Option<Vec<u8>>,
 }

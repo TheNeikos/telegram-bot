@@ -73,16 +73,16 @@ macro_rules! multipart_field {
 
     ($self:expr, $result:expr, $field:ident(text) => $val:expr) => {{
         let value = MultipartValue::Text($val.to_string().into());
-        $result.push((stringify!($field), value));
+        $result.push((String::from(stringify!($field)), value));
     }};
 
     ($self:expr, $result:expr, $field:ident(json) => $val:expr) => {{
         let s = ::serde_json::to_string($val).map_err(ErrorKind::from)?;
         let value = MultipartValue::Text(s.into());
-        $result.push((stringify!($field), value));
+        $result.push((String::from(stringify!($field)), value));
     }};
     ($self:expr, $result:expr, $field:ident(raw) => $val:expr) => {{
         let value = $val.to_multipart_value();
-        $result.push((stringify!($field), value));
+        $result.push((String::from(stringify!($field)), value));
     }};
 }

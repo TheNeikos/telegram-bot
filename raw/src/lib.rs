@@ -33,13 +33,13 @@ mod prelude {
     pub use std::boxed::Box;
     pub use std::fmt;
     pub use std::format;
+    pub use std::marker;
+    pub use std::ops::Deref;
+    pub use std::ops::Not;
     pub use std::str;
     pub use std::string::String;
     pub use std::string::ToString;
     pub use std::vec::Vec;
-    pub use std::marker;
-    pub use std::ops::Deref;
-    pub use std::ops::Not;
 }
 
 #[cfg(feature = "request_building")]
