@@ -17,11 +17,11 @@ license = "MIT"
 [features]
 default = ["request_building", "bytes/std"]
 request_building = ["serde_json"]
-no_std = ["serde/alloc"]
+no_std = ["serde/alloc", "serde_json/alloc"]
 
 
 [dependencies]
 bytes = {version = "0.5", default-features = false }
 serde = { version = "1", default-features = false }
 serde_derive = { version = "1", default-features = false }
-serde_json = { version = "1", optional = true }
+serde_json = { version = "1", optional = true, default-features = false }
